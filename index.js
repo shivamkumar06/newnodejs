@@ -6,7 +6,23 @@ const route=require('./routes/route');
 
 var cors=require("cors");
 var path=require("path");
+var app=express()
+const port=3000;
+app.get('/',(req,res)=>{
+    res.send("foobar");
+});z
+app.listen(port,()=>{
+    console.log("server started at:"+port);
+})
 
+
+//connect to mongodb
+
+mongoose.connect("mongodb://localhost:27017/contactlist");
+
+mongoose.connection.on('connected',()=>{
+  console.log("connected to db");
+})
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true}))
@@ -26,23 +42,7 @@ app.use(cors());
 app.use(express.static(path.join(__dirname,'public')))
 
 
-var app=express()
-const port=3000;
-app.get('/',(req,res)=>{
-    res.send("foobar");
-});z
-app.listen(port,()=>{
-    console.log("server started at:"+port);
-})
 
-
-//connect to mongodb
-
-mongoose.connect("mongodb://localhost:27017/contactlist");
-
-mongoose.connection.on('connected',()=>{
-  console.log("connected to db");
-})
 
 
 
